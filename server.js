@@ -30,6 +30,20 @@ mongoose.connection
     .on("close", () => console.log("Your are disconnected from mongoose"))
     .on("error", (error) => console.log(error));
     
+
+//--------------------------------------------
+//  Database Model
+//--------------------------------------------
+const CheeseSchema = new mongoose.Schema ({
+    name: String,
+    countryOfOrigin: String,
+    image: String
+})
+
+const Cheese = mongoose.model("Cheese", CheeseSchema);
+
+
+
 //--------------------------------------------
 //  Routes
 //--------------------------------------------
