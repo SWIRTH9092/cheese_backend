@@ -15,6 +15,10 @@ const app = express ();
 //import mongoose
 const mongoose = require("mongoose");
 
+//import middleware
+const cors = require("cors");
+const morgan = require("morgan");
+
 //--------------------------------------------
 //  Database Connection
 //--------------------------------------------
@@ -42,7 +46,12 @@ const CheeseSchema = new mongoose.Schema ({
 
 const Cheese = mongoose.model("Cheese", CheeseSchema);
 
-
+//--------------------------------------------
+//  Middleware
+//--------------------------------------------
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
 
 //--------------------------------------------
 //  Routes
