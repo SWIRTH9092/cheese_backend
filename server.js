@@ -61,6 +61,53 @@ app.get("/", (req, res) => {
     res.send("hello world");
 });
 
+//  Cheese Index Route
+app.get("/cheese", async (req, res) => {
+    try {
+        // send all cheeses
+        res.json(await Cheese.find({}));
+    }  catch (error) {
+        //send error
+        res.status(400).json(error);
+    }
+});
+
+// Cheese Create Route
+app.post("/cheese", async (req, res) => {
+    try {
+        //  create cheese
+        res.json (await Cheese.create(req.body));
+    } catch (error) {
+        //send error
+        res.status(400).json(error)
+    }
+});
+
+// Cheese Update Route
+app.put("/cheese/:id", async (req, res) => {
+    try {
+        //  update cheese
+        console.log (req.params.id, req.body)
+        res.json (
+            await Cheese.findByIdAndUpdate(req.params.id, req.body, {new: true}));
+    } catch (error) {
+        //send error
+        res.status(400).json(error)
+    }
+});
+
+// Cheese Delete Route
+app.delete("/cheese/:id", async (req, res) => {
+    try {
+        // send cheese to delete
+        res.json(await Cheese.findByIdAndRemove(req.params.id))
+    } catch (error) {
+        //send error
+        res.status(400).json(error);
+    }
+});
+
+
 //--------------------------------------------
 //  Listner
 //--------------------------------------------
